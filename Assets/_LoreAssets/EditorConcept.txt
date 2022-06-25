@@ -1,0 +1,18 @@
+Idea
+----
+Have 2 main vehicles: a rover and a speeder between which we can choose in every garage (tent with tools)
+Each has a main bloc with propulsion, weapons and upgrades missing (guided missiles, shield module, ...)
+The main bloc has 4 propulsion spots and 2 or 3 spots for weapons and upgrades
+→ The player has to choose the most efficient combination of tools according to its needs, the number of spots can
+  get higher when we unlock new ones: add some form of spot to the vehicle
+
+Needed
+------
+Reuse:
+• Place block with mouse
+• Save/load system
+
+To add:
+• UI to select block
+
+On controller: select spot using joystick then select block using joystick

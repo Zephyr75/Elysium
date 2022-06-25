@@ -1,0 +1,10 @@
+1: Use inverse kinematics to control leg
+2: Fix bottom of the leg to the ground
+3: Make a target point attached to the body
+4: Raycast from the target point downwards to move it up and down
+5: Check distance from target point
+6: Move leg towards target when distance gets too big
+7: Put legs in a zigzag pattern
+8: Only move leg when opposite legs are grounded (same clip)
+9: Use average leg position + offset for the body position
+10: Rotate body based on difference between left and right leg height

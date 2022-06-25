@@ -1,0 +1,152 @@
+Histoire
+--------
+Monde technologique, parents anciens rois tués lors d'un déraillement de train dans le désert,
+découvre que la nouvelle impératrice a créé un bouclier qui protège la plaine d'Alte pour avoir
+le monopole des cultures du royaume
+Le bouclier tient par 5 générateurs disposés dans les zones externes du monde
+Une fois le bouclier désactivé, les peuples alentours se rebellent et l'impératrice finit en prison
+
+
+Cinématiques en dessin et Cinemachine pour des plans de caméra qui tourne pour viser le joueur et des plans smooths?
+
+Gameplay
+--------
+Combat:
+• Epée-boomerang
+• Esquive
+• Finishers
+
+Véhicules:
+• Rover
+• Hovercraft
+
+Exploration:
+• Collectables pour acheter des améliorations de véhicules/cosmétiques
+• Puzzles pour débloquer des pouvoirs
+
+Donjons
+-------
+• "Zelda-like"
+• Plusieurs salles
+• Côté puzzle
+• Robots:
+  → H-Unit = humanoïdes sans jambes (dodge dessous)
+  → D-Unit = drones
+  → T-Unit = tourelles: non-destructibles à distance
+  → B-Unit = boss
+  
+Contexte
+--------
+• Année = 2251
+• Planète = Aster
+• Capitale = Opima
+• Héros = Levis, 13 ans
+• Roi = Laeto IV
+• Reine = Alba
+• Méchante = Spina
+
+Exploration
+----------
+4 zones: désert, marais, montagne, plaine
+Au total: 5 donjons à aller faire et 8 puzzles à résoudre + bcp de campements
+
+Trésors dans des avant-postes de robots
+Animaux sauvages en pure déco
+Trésors dans des Points Of Interest (oasis, caverne, ...)
+Puzzle donnant des abilités
+Marchand vendant des skins pour véhicule et joueur/Propose une course de véhicules contre de l'argent
+Donjons en bâtiments hors-sol
+Hautes herbes
+
+Idée boss: missiles guidés
+
+Donjon 1: désert
+bâtiment → araignée
+épée → grappin
+puzzle → grappin
+trésor → dash
+boss → araignée
+
+Donjon 2: désert
+bâtiment → drone
+épée → hélice
+puzzle → courants d'air
+trésor → double saut
+boss → drone
+
+Donjon 3: jungle
+bâtiment → rocher sous l'eau toxique accessible par une île en platforming
+épée → coupe-cordes
+puzzle → courant d'eau
+trésor → bouclier
+boss → 
+
+Donjon 4: montagne
+bâtiment → troglodyte
+épée → brise-rock ou ski
+puzzle → 
+trésor → invisible
+boss → 
+
+Donjon 5: plaine
+bâtiment → géant (pas un donjon du bouclier mais le dernier rempart de l'impératrice)
+épée → escalade
+puzzle → 
+trésor →
+boss → hologramme de l'impératrice
+
+Upgrades
+--------
+Skills:
+• Combat
+• Dash
+• Double saut
+• Invisible (rechargeable)
+• Bouclier
+
+Visuels
+-------
+• 3D stylisée semi low-poly
+• Herbe outil Terrain
+• Cailloux Thomas stylisés
+• Arbres vent shader graph feuilles rondes
+
+Références
+----------
+Gameplay:
+• Just Cause
+• Biomutant
+• Star Wars
+• Botw
+Univers:
+• Codeer
+• Omno
+• Star Wars
+Visuels:
+• Omno
+• Star Wars
+• Dune
+
+Softwares
+---------
+• Unity
+• Rider
+• Blender
+• Photoshop
+• GitHub
+• Mixamo
+• Atom
+
+Unity tools
+-----------
+• Shader graph → textures et eau
+• Vfx graph → étoiles et nuages
+• Particle System → autres particules
+• Grass → Terrain tool
+• Tree → Tree generator Blender avec des feuilles hexagonales
+• NavMesh → H-Unit
+• Inverse Kinematics → B-Unit
+• Mesh generation → ???
+• Machine learning → D-Unit détour des collisions
+• Terrain tool
+• Path follow

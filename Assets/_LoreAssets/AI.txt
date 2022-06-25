@@ -1,0 +1,13 @@
+Patrol
+Alert others
+Start chasing while shooting at the player and right where he is going
+If player not in line of sight, compute quadratic function to get to last player position through ML or NavMesh
+Move randomly to dodge while shooting when close enough
+If player hasn't been seen in 20 seconds, wide rotation around where player disappeared for 20 seconds then go back to patrol
+
+Drone
+-----
+Reach position above player, lower altitude to shoot
+If reaching position meets obstacle → polynomial regression to dodge
+Afetr seeing, remembers position even if sight lost
+To get sight, send raycast to player and check collision and normal within a certain angle range (vision only in front)

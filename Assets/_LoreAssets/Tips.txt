@@ -1,0 +1,11 @@
+Rocks:
+ico*2
+decimate by angle
+
+Trees:
+tree gen
+japanese
+split 1
+hexa
+size 1
+sizeX 1

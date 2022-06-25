@@ -1,0 +1,26 @@
+Player should not wonder what to do, just how to do it
+
+Have some kind of contradiction: can't press a button and go through a door at the same time
+
+Have a catch and revelation
+
+Trick the player to the obvious assumption
+
+Few elements: need to think "this should have been easy"
+
+Build on top of other puzzles
+
+Not too many steps
+
+Pendule de Newton
+Dominos
+Mini-golf
+Catapulte par contrepoids
+
+Cut ropes
+Poids
+Launchpad?
+Rewind time en cas d'échec (Outer Wilds effect)
+
+Algo Trackmania pour créer des supports sur les faces vers le sol (faire un objet spécial avec juste les faces vers le sol)
+Si étage supérieur: ne créer les supports que si il n'y a rien en dessous

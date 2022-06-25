@@ -1,0 +1,43 @@
+Player:
+Find animations
+Create animations
+Implement animations
+Model fighting stick
+Implement fighting
+Add fighting particles
+
+Speeder:
+Upgrade hover
+Add canon
+Add shield
+Add remove option
+Add rotate option
+Make actual models
+Add particles
+Save/load system
+
+World:
+Design test puzzle
+Design test dungeon
+Make vegetation models
+Make props models
+Make environments
+Model map main shape
+Add fog/sun rays
+
+Enemies:
+Implement H-Unit/D-Unit
+Concept G-Unit
+Model G-Unit
+Implement G-Unit
+Concept animals
+Models animals
+Implement animals
+Add particles
+
+Story:
+Write full story
+Write Lore
+Write cinematics
+Concept storyboard cinematics
+Drawing cinematics
