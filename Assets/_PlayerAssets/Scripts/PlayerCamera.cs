@@ -21,6 +21,11 @@ public class PlayerCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.isPaused)
+        {
+            return;
+        }
+
         horizontalRotation += Input.GetAxis("Mouse X") * sensitivity;
         verticalRotation += Input.GetAxis("Mouse Y") * sensitivity;
         

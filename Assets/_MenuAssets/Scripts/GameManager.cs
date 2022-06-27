@@ -6,8 +6,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
 
-    private bool isPaused = false;
-    private int playerHealth = 10;
+    public static bool isPaused = false;
+    private static int playerHealth = 10;
+
+    public static float transitionTime = .4f;
     [SerializeField] private GameObject pauseMenu;
 
     void Update()
@@ -24,17 +26,17 @@ public class GameManager : MonoBehaviour
 
     public void Resume(){
         pauseMenu.SetActive(false);
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
         isPaused = false;
     }
 
     public void Pause(){
         pauseMenu.SetActive(true);
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
         isPaused = true;
     }
 
-    public void RemovePlayer(int damage){
+    public void RemoveHealth(int damage){
         playerHealth -= damage;
         if (playerHealth <= 0){
             DeathPlayer();
@@ -54,6 +56,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void BackToMenu(){
-        SceneManager.LoadScene("Menu");
+        StartCoroutine(BackToMenuCoroutine());
+    }
+
+    IEnumerator BackToMenuCoroutine(){
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene("MainMenu");
     }
 }
