@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/_WorldAssets/PrototypeVisualDungeon.unity
     guid: 4188e20e0c976fd4890feab953b2963c
   - enabled: 1
-    path: Assets/_WorldAssets/PrototypeVisualDesert.unity
+    path: Assets/_WorldAssets/Desert.unity
     guid: 92752957a9e85a8498abe2070e0a3e42
   m_configObjects: {}

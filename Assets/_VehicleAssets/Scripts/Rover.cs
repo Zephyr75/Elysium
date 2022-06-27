@@ -31,23 +31,18 @@ public class Rover : Movable
     private void FixedUpdate()
     {
         GetInput();
+        isBreaking = space;
         HandleMotor();
         HandleSteering();
         UpdateWheels();
         GetComponent<Rigidbody>().centerOfMass = new Vector3 (0, -2, 0);
     }
 
-
-    private void GetInput()
-    {
-        isBreaking = space;
-        //print(verticalInput.ToString());
-    }
-
     private void HandleMotor()
     {
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
+        print(verticalInput.ToString());
         if (Mathf.Abs(verticalInput) < .1f)
         {
             //currentbreakForce = isBreaking ? breakForce : 1000f;
