@@ -38,10 +38,10 @@ public class Grapple : MonoBehaviour
     void StartGrapple()
     {
         RaycastHit hit;
-        print("1");
+        //print("1");
         if (Physics.Raycast(cam.position, cam.forward, out hit, maxDistance, grappeableMask))
         {
-            print("2");
+            //print("2");
             grapplePoint = hit.point;
             joint = player.gameObject.AddComponent<SpringJoint>();
             joint.autoConfigureConnectedAnchor = false;
