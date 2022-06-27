@@ -7,9 +7,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SkyboxSandNight 1
+  m_Name: SkyboxJungle
   m_Shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _MAPPING_LATITUDE_LONGITUDE_LAYOUT _METALLIC_SETUP _SUNDISK_HIGH_QUALITY
+  m_ShaderKeywords: _MAPPING_LATITUDE_LONGITUDE_LAYOUT _METALLIC_SETUP _SUNDISK_NONE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -81,7 +81,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _SunDisk: 2
+    - _SunDisk: 0
     - _SunSize: 0
     - _SunSizeConvergence: 5
     - _UVSec: 0
@@ -90,8 +90,8 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GroundColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
-    - _SkyTint: {r: 1, g: 0.57254905, b: 0, a: 1}
+    - _GroundColor: {r: 0, g: 0, b: 0, a: 1}
+    - _SkyTint: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Tint: {r: 1, g: 0.8616898, b: 0.63584906, a: 0.5}
   m_BuildTextureStacks: []
