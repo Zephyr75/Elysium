@@ -5703,17 +5703,17 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
   shallowColor: {r: 0, g: 0.7725491, b: 0.62352943, a: 0.5019608}
-  deepColor: {r: 0.01176471, g: 0.28619745, b: 0.50980073, a: 1}
+  deepColor: {r: 0.01176471, g: 0.2861964, b: 0.50980073, a: 1}
   colorDepth: 4
-  horizonColor: {r: 0, g: 0.22737399, b: 0.8, a: 1}
+  horizonColor: {r: 0, g: 0.22737291, b: 0.8, a: 1}
   horizonDistance: 20
   shoreFade: 1
-  shoreColor: {r: 0, g: 0.98039216, b: 0.30188385, a: 0}
+  shoreColor: {r: 0, g: 0.98039216, b: 0.3018828, a: 0}
   shoreStrength: 0
   shoreBlend: 1
   shoreDepth: 0.74
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0.20384857, g: 0.30972686, b: 0.517647, a: 0}
+  underwaterColor: {r: 0.20384756, g: 0.3097258, b: 0.517647, a: 0}
   underwaterColorStrength: 0
   underwaterRefractionStrength: 0.099
   surfaceFoamTexture: {fileID: 2800000, guid: d3b0d77dfe711a04c8ff18ecc260aa66, type: 3}
@@ -5857,13 +5857,69 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1713995194}
     m_Modifications:
+    - target: {fileID: 1187519321606790825, guid: df3f89ba5aee5aa429dd5b83220336fe, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e26f2b95e672e4546b62bf3e0eeb7215, type: 3}
+    - target: {fileID: 1187519322099500676, guid: df3f89ba5aee5aa429dd5b83220336fe, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187519322099500676, guid: df3f89ba5aee5aa429dd5b83220336fe, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187519322099500676, guid: df3f89ba5aee5aa429dd5b83220336fe, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187519322099500676, guid: df3f89ba5aee5aa429dd5b83220336fe, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187519322099500676, guid: df3f89ba5aee5aa429dd5b83220336fe, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1187519322099500677, guid: df3f89ba5aee5aa429dd5b83220336fe, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187519322099500677, guid: df3f89ba5aee5aa429dd5b83220336fe, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 12.923
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187519322099500677, guid: df3f89ba5aee5aa429dd5b83220336fe, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -50.1051
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187519322099500677, guid: df3f89ba5aee5aa429dd5b83220336fe, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 52.682
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187519322099500677, guid: df3f89ba5aee5aa429dd5b83220336fe, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.4728012
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187519322342280564, guid: df3f89ba5aee5aa429dd5b83220336fe, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187519322342280564, guid: df3f89ba5aee5aa429dd5b83220336fe, type: 3}
+      propertyPath: m_Navigation.m_WrapAround
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1187519322440072066, guid: df3f89ba5aee5aa429dd5b83220336fe, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1187519322456506206, guid: df3f89ba5aee5aa429dd5b83220336fe, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 227e365a1ec25d64d9c1c9142dfdc75a, type: 3}
+    - target: {fileID: 1187519323248369896, guid: df3f89ba5aee5aa429dd5b83220336fe, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 185.1
       objectReference: {fileID: 0}
     - target: {fileID: 1187519323280986472, guid: df3f89ba5aee5aa429dd5b83220336fe, type: 3}
       propertyPath: m_Name
