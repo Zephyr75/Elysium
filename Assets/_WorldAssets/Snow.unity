@@ -15,7 +15,7 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
   m_Fog: 1
-  m_FogColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
+  m_FogColor: {r: 1, g: 1, b: 1, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.01
   m_LinearFogStart: 0
@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 53b875f333ef8bb41b31bc48059b9ae2, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.52391684, g: 0.5522603, b: 0.59749275, a: 1}
+  m_IndirectSpecularColor: {r: 0.32910886, g: 0.93513656, b: 1.068331, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -737,7 +737,7 @@ MonoBehaviour:
   shallowColor: {r: 1, g: 1, b: 1, a: 0.5019608}
   deepColor: {r: 0, g: 0, b: 0, a: 1}
   colorDepth: 4
-  horizonColor: {r: 0, g: 0.2273561, b: 0.8, a: 1}
+  horizonColor: {r: 0, g: 0.22735322, b: 0.8, a: 1}
   horizonDistance: 20
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}
@@ -745,7 +745,7 @@ MonoBehaviour:
   shoreBlend: 1
   shoreDepth: 0.74
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0.20383164, g: 0.309709, b: 0.517647, a: 0}
+  underwaterColor: {r: 0.2038289, g: 0.30970612, b: 0.517647, a: 0}
   underwaterColorStrength: 0
   underwaterRefractionStrength: 0.099
   surfaceFoamTexture: {fileID: 2800000, guid: d3b0d77dfe711a04c8ff18ecc260aa66, type: 3}
