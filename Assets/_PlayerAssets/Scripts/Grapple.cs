@@ -10,10 +10,12 @@ public class Grapple : MonoBehaviour
     [SerializeField] private Transform hand, cam, player;
     private float maxDistance = 100f;
     private SpringJoint joint;
+    private bool isGrappling = false;
 
     private void Awake()
     {
         lr = GetComponent<LineRenderer>();
+        lr.positionCount = 2;
     }
 
     void Update()
@@ -24,7 +26,7 @@ public class Grapple : MonoBehaviour
         {
             StartGrapple();
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isGrappling)
         {
             StopGrapple();
         }
@@ -49,29 +51,33 @@ public class Grapple : MonoBehaviour
 
             float distanceFromPoint = Vector3.Distance(player.position, grapplePoint);
 
-            joint.maxDistance = distanceFromPoint * .8f;
+            joint.maxDistance = distanceFromPoint; // * .9f;
             joint.minDistance = distanceFromPoint * .25f;
 
             joint.spring = 104.5f;
             joint.damper = 7f;
             joint.massScale = 4.5f;
 
-            lr.positionCount = 2;
+            isGrappling = true;
+            lr.enabled = true;
 
         }
     }
 
     void DrawRope(){
-        //if (joint != null) return;
-        lr.SetPosition(0, transform.position);
-        lr.SetPosition(1, grapplePoint);
+        if (isGrappling){
+            lr.SetPosition(0, hand.position);
+            lr.SetPosition(1, grapplePoint);
+        }
     }
 
     void StopGrapple()
     {
-        lr.positionCount = 0;
-        player.GetComponent<Rigidbody>().AddForce(player.up * 600);
+        //lr.positionCount = 0;
+        player.GetComponent<Rigidbody>().AddForce((player.up * 2 + player.forward) * 600);
         Destroy(joint);
+        isGrappling = false;
+        lr.enabled = false;
     }
 
 }
