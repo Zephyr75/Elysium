@@ -21,8 +21,12 @@ public class Grapple : MonoBehaviour
     void Update()
     {
         
-        Debug.DrawRay(cam.position, cam.forward * maxDistance, Color.red);
-        if (Input.GetMouseButtonDown(0))
+        //Debug.DrawRay(cam.position, cam.forward * maxDistance, Color.red);
+        if (isGrappling && player.GetComponent<PlayerMovement>().onGround){
+            UpdateJointLength();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
         {
             StartGrapple();
         }
@@ -37,6 +41,13 @@ public class Grapple : MonoBehaviour
         DrawRope();
     }
 
+    void UpdateJointLength(){
+        float distanceFromPoint = Vector3.Distance(player.position, grapplePoint);
+
+        joint.maxDistance = distanceFromPoint;
+        joint.minDistance = distanceFromPoint * .25f;
+    }
+
     void StartGrapple()
     {
         RaycastHit hit;
@@ -49,16 +60,14 @@ public class Grapple : MonoBehaviour
             joint.autoConfigureConnectedAnchor = false;
             joint.connectedAnchor = grapplePoint;
 
-            float distanceFromPoint = Vector3.Distance(player.position, grapplePoint);
-
-            joint.maxDistance = distanceFromPoint; // * .9f;
-            joint.minDistance = distanceFromPoint * .25f;
+            UpdateJointLength();
 
             joint.spring = 104.5f;
             joint.damper = 7f;
             joint.massScale = 4.5f;
 
             isGrappling = true;
+
             lr.enabled = true;
 
         }
@@ -74,7 +83,7 @@ public class Grapple : MonoBehaviour
     void StopGrapple()
     {
         //lr.positionCount = 0;
-        player.GetComponent<Rigidbody>().AddForce((player.up * 2 + player.forward) * 600);
+        player.GetComponent<Rigidbody>().AddForce(player.GetComponent<Rigidbody>().velocity * 50);
         Destroy(joint);
         isGrappling = false;
         lr.enabled = false;

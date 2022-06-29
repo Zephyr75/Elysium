@@ -17,7 +17,8 @@ public class PlayerMovement : MovableCharacter
     }
     
     private const float MAX_VELOCITY = 15;
-    private bool onGround, isCrouching;
+    public bool onGround;
+    private bool isCrouching;
     private GameObject thrownSword;
     private float speed, maxVelocity, animDeltaTime;
     private bool isMoving, swordThrown = false, swordInHand = true;
@@ -227,7 +228,7 @@ public class PlayerMovement : MovableCharacter
         thrownSword.GetComponent<Rigidbody>().AddForce(cameraPlayer.forward * 3000);
         yield return new WaitForSeconds(.1f);
         thrownSword.AddComponent<BoxCollider>();
-        yield return new WaitForSeconds(.4f);
+        yield return new WaitForSeconds(1f);
         swordThrown = false;
     }
 

@@ -5,20 +5,23 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
 
-    [SerializeField] private GameObject bullet;
-    // Start is called before the first frame update
+    private GameObject bullet;
+    private float coolDown;
     void Start()
     {
-        
+        bullet = GameObject.FindGameObjectWithTag("Bullet");
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (Input.GetMouseButtonDown(0))
+        coolDown -= Time.deltaTime;
+        Debug.DrawRay(transform.position, transform.forward * 100, Color.red);
+        if (Physics.Raycast(transform.position, transform.forward, 100, LayerMask.GetMask("Player")) && coolDown < 0)
         {
+            print("shots fired");
             GameObject newBullet = Instantiate(bullet, transform.position, transform.rotation * new Quaternion(0, 0, 90, 0));
             newBullet.GetComponent<Rigidbody>().AddForce(newBullet.transform.forward*5000);
+            coolDown = 0.5f;
         }
     }
 }
