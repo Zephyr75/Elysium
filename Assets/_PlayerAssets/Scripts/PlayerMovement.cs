@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
-
 public class PlayerMovement : MovableCharacter
 {
     enum PlayerState
@@ -30,6 +29,8 @@ public class PlayerMovement : MovableCharacter
     [SerializeField] private Transform modelPlayer, cameraPlayer, hand;
     [SerializeField] private LayerMask maskClimb;
     [SerializeField] private GameObject swordPrefab, sword, trail1, trail2;
+
+    [SerializeField] private Cinemachine.CinemachineImpulseSource source;
     
     // Start is called before the first frame update
     void Start()
@@ -82,6 +83,9 @@ public class PlayerMovement : MovableCharacter
         {
             if (comboTime < 0)
             {
+                //source.GenerateImpulse(Camera.main.transform.forward);
+                source.GenerateImpulse();
+
                 StartCoroutine(coroutine1);
                 StartCoroutine(coroutine2);
                 StartCoroutine(PlayAnimation("RightSlash", 1.2f));

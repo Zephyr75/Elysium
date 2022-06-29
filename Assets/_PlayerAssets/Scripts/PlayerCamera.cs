@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,9 +8,8 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private int defaultDistance;
     [SerializeField] private int zoomedDistance;
 
-    [SerializeField] private Transform focusPlayer, cameraPlayer, modelPlayer;
-    [SerializeField] private GameObject uiTarget;
-    [SerializeField] private bool isPlayerCamera;
+    [SerializeField] private Transform focus, player;
+    [SerializeField] private GameObject uiTarget, moveCamera, aimCamera;
     
     // Start is called before the first frame update
     void Start()
@@ -30,24 +29,25 @@ public class PlayerCamera : MonoBehaviour
         verticalRotation += Input.GetAxis("Mouse Y") * sensitivity;
         
         verticalRotation = Mathf.Clamp(verticalRotation, -80, 80);
-        //focus.position = transform.position + transform.up * 2;
-        focusPlayer.localEulerAngles = Vector3.left * verticalRotation + Vector3.up * horizontalRotation;
+        focus.localEulerAngles = Vector3.left * verticalRotation + Vector3.up * horizontalRotation;
         
-        if (isPlayerCamera && transform.GetComponent<PlayerMovement>().CanRotateCamera())
+        if (transform.GetComponent<PlayerMovement>().CanRotateCamera())
         {
-            modelPlayer.localEulerAngles = new Vector3(0, focusPlayer.localEulerAngles.y, 0);
+            player.localEulerAngles = new Vector3(0, focus.localEulerAngles.y, 0);
         }
-        cameraPlayer.localEulerAngles = focusPlayer.localEulerAngles;
+
         if (Input.GetMouseButton(2))
         {
-            modelPlayer.localEulerAngles = new Vector3(0, focusPlayer.localEulerAngles.y, 0);
+            player.localEulerAngles = new Vector3(0, focus.localEulerAngles.y, 0);
+            moveCamera.SetActive(false);
+            aimCamera.SetActive(true);
             uiTarget.SetActive(true);
-            cameraPlayer.position = focusPlayer.position - focusPlayer.forward * zoomedDistance + focusPlayer.right;
         }
         else
         {
             uiTarget.SetActive(false);
-            cameraPlayer.position = focusPlayer.position - focusPlayer.forward * defaultDistance;
+            moveCamera.SetActive(true);
+            aimCamera.SetActive(false);
         }
         
     }
