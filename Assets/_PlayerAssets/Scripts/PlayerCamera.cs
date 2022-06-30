@@ -6,22 +6,34 @@ using UnityEngine.InputSystem;
 public class PlayerCamera : MonoBehaviour
 {
     //TODO Settings: add sensitivity
-    private float sensitivity = .1f, verticalRotation, horizontalRotation;
+    private float sensitivity = 1f, verticalRotation, horizontalRotation;
     [SerializeField] private int defaultDistance;
     [SerializeField] private int zoomedDistance;
 
     [SerializeField] private Transform focus, player;
     [SerializeField] private GameObject uiTarget, moveCamera, aimCamera;
 
-    public void UpdateCamera(InputAction.CallbackContext context)
+    
+    [SerializeField] private InputActionMap input;
+
+    void OnEnable()
+    {
+        input.Enable();
+    }
+
+    void OnDisable()
+    {
+        input.Disable();
+    }
+    public void UpdateCamera(Vector2 movementDirection)
     {
         if (GameManager.isPaused)
         {
             return;
         }
         
-        horizontalRotation += context.ReadValue<Vector2>().x * sensitivity;
-        verticalRotation += context.ReadValue<Vector2>().y * sensitivity;
+        horizontalRotation += movementDirection.x * sensitivity;
+        verticalRotation += movementDirection.y * sensitivity;
         
         verticalRotation = Mathf.Clamp(verticalRotation, -80, 80);
         focus.localEulerAngles = Vector3.left * verticalRotation + Vector3.up * horizontalRotation;
@@ -29,6 +41,8 @@ public class PlayerCamera : MonoBehaviour
     
     void FixedUpdate()
     {
+        
+        UpdateCamera(input["Move"].ReadValue<Vector2>());
 
         /*if (mouse_2)
         {

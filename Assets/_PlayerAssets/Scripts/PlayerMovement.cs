@@ -17,7 +17,7 @@ public class PlayerMovement : MovableCharacter
     }
     
     private const float MAX_VELOCITY = 15;
-    private const float ACCELERATION = 300;
+    private const float ACCELERATION = 30;
     public bool onGround;
     private bool isCrouching;
     private GameObject thrownSword;
@@ -32,18 +32,35 @@ public class PlayerMovement : MovableCharacter
     [SerializeField] private GameObject swordPrefab, sword, trail1, trail2, focus;
 
     [SerializeField] private Cinemachine.CinemachineImpulseSource source;
+
+    [SerializeField] private InputActionMap input;
     
-    // Start is called before the first frame update
     void Start()
     {
         coroutine1 = PlayParticle(trail1, 1.2f);
         coroutine2 = PlayParticle(trail2, 1.2f);
         player = transform;
+
+        input["Jump"].performed += ctx => Jump(ctx);
     }
 
-    // Update is called once per frame
+    void OnEnable()
+    {
+        input.Enable();
+    }
+
+    void OnDisable()
+    {
+        input.Disable();
+    }
+
     void FixedUpdate()
     {
+        Move(input["Move"].ReadValue<Vector2>());
+
+
+
+
         //Follow focus rotation
         if (isMoving || !onGround){
             modelPlayer.localEulerAngles = new Vector3(0, focus.transform.localEulerAngles.y, 0);
@@ -112,10 +129,10 @@ public class PlayerMovement : MovableCharacter
         
     }
 
-    public void Move(InputAction.CallbackContext context)
+    void Move(Vector2 movementDirection)
     {
-        float horizontalInput = context.ReadValue<Vector2>().x;
-        float verticalInput = context.ReadValue<Vector2>().y;
+        float horizontalInput = movementDirection.x;
+        float verticalInput = movementDirection.y;
 
         isMoving = horizontalInput != 0 || verticalInput != 0;
 
@@ -169,7 +186,7 @@ public class PlayerMovement : MovableCharacter
             playerAnimator.SetBool("Crouch", isCrouching);
     }
 
-    public void Jump(InputAction.CallbackContext context)
+    void Jump(InputAction.CallbackContext context)
     {
         if (curState != PlayerState.Jump)
         {
@@ -190,7 +207,8 @@ public class PlayerMovement : MovableCharacter
     {
         curState = PlayerState.Jump;
         coyoteTime = -1;
-        yield return new WaitForSeconds(.35f);
+        yield return new WaitForSeconds(.35f); 
+        //TODO restore
         transform.GetComponent<Rigidbody>().AddForce(transform.up * strength);
         yield return new WaitForSeconds(1);
         curState = PlayerState.Default;
