@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rover : Movable
+public class Rover : MonoBehaviour
 {
     private float currentSteerAngle;
     private float currentbreakForce;
@@ -28,10 +28,11 @@ public class Rover : Movable
     [SerializeField] private Transform rearLeftWheelTransform;
     [SerializeField] private Transform rearRightWheelTransform;
 
+/*
     private void FixedUpdate()
     {
         GetInput();
-        isBreaking = space;
+        isBreaking = jump;
         HandleMotor();
         HandleSteering();
         UpdateWheels();
@@ -91,4 +92,5 @@ public class Rover : Movable
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
     }
+    */
 }

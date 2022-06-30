@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Speeder : Movable
+public class Speeder : MonoBehaviour
 {
     
     private bool up, down, left, right;
@@ -12,6 +12,7 @@ public class Speeder : Movable
     
     private readonly Vector3 m_EulerAngleVelocity = new Vector3(0, 0, 0);
     [SerializeField] private float power, maxSpeed;
+    /*
 
     // Start is called before the first frame update
     void Start()
@@ -79,4 +80,5 @@ public class Speeder : Movable
         GetComponent<Rigidbody>().AddTorque(transform.up * horizontalInput * 50);
         
     }
+    */
 }

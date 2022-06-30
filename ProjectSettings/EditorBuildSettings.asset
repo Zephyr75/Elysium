@@ -12,9 +12,10 @@ EditorBuildSettings:
     path: Assets/_PrototypeAssets/PrototypeSpace.unity
     guid: d2929934c215ed549a4477935425ca28
   - enabled: 0
-    path: Assets/_WorldAssets/PrototypeVisualDungeon.unity
+    path: Assets/_WorldAssets/Dungeon.unity
     guid: 4188e20e0c976fd4890feab953b2963c
   - enabled: 1
     path: Assets/_WorldAssets/Desert.unity
     guid: 92752957a9e85a8498abe2070e0a3e42
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: d024d53eaae08514684a8736561060c4, type: 2}

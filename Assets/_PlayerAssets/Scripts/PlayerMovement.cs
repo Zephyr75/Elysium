@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.InputSystem;
 public class PlayerMovement : MovableCharacter
 {
     enum PlayerState
@@ -16,19 +17,19 @@ public class PlayerMovement : MovableCharacter
     }
     
     private const float MAX_VELOCITY = 15;
+    private const float ACCELERATION = 300;
     public bool onGround;
     private bool isCrouching;
     private GameObject thrownSword;
-    private float speed, maxVelocity, animDeltaTime;
     private bool isMoving, swordThrown = false, swordInHand = true;
     private PlayerState curState;
     private IEnumerator coroutine1, coroutine2;
     private Transform player;
-    [SerializeField] private float coyoteTime, comboTime, maxSpeed;
+    [SerializeField] private float coyoteTime, comboTime;
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private Transform modelPlayer, cameraPlayer, hand;
     [SerializeField] private LayerMask maskClimb;
-    [SerializeField] private GameObject swordPrefab, sword, trail1, trail2;
+    [SerializeField] private GameObject swordPrefab, sword, trail1, trail2, focus;
 
     [SerializeField] private Cinemachine.CinemachineImpulseSource source;
     
@@ -43,25 +44,26 @@ public class PlayerMovement : MovableCharacter
     // Update is called once per frame
     void FixedUpdate()
     {
-        isMoving = horizontalInput != 0 || verticalInput != 0;
+        //Follow focus rotation
+        if (isMoving || !onGround){
+            modelPlayer.localEulerAngles = new Vector3(0, focus.transform.localEulerAngles.y, 0);
+        }
+
         
         //Variables setup
-        GetInput();
         GetComponent<Rigidbody>().drag = onGround ? 2 : 0;
         player.localEulerAngles = new Vector3(0, player.localEulerAngles.y, 0);
         playerAnimator.SetBool("Fall", !onGround);
+        onGround = Physics.Raycast(transform.position, -transform.up, 1.3f);
+        coyoteTime = onGround ? .5f : coyoteTime - Time.deltaTime;
         
         //Draw debug rays
         Debug.DrawRay(player.position, -player.up * 1.3f, Color.red);
         Debug.DrawRay(player.position + player.up * 2, modelPlayer.forward, Color.red);
         Debug.DrawRay(player.position, modelPlayer.forward, Color.red);
 
-        Move();
-        Crouch();
-        Jump();
-        
-        
         //Climb
+        /*
         if (Physics.Raycast(transform.position, modelPlayer.forward, 1.5f, maskClimb))
         {
             curState =
@@ -74,36 +76,14 @@ public class PlayerMovement : MovableCharacter
         if (curState == PlayerState.Climb && verticalInput == 1)
         {
             player.position += transform.up/100;
-            //transform.GetComponent<Rigidbody>().AddForce(transform.up);
         }
+        */
         
         //Attack
         comboTime = comboTime - Time.deltaTime;
-        if (mouse_0)
-        {
-            if (comboTime < 0)
-            {
-                //source.GenerateImpulse(Camera.main.transform.forward);
-                source.GenerateImpulse();
-
-                StartCoroutine(coroutine1);
-                StartCoroutine(coroutine2);
-                StartCoroutine(PlayAnimation("RightSlash", 1.2f));
-                StartCoroutine(sword.GetComponent<Sword>().Attack());
-                comboTime = 1.2f;
-            }
-            else
-            {
-                StopCoroutine(coroutine1);
-                StopCoroutine(coroutine2);
-                StartCoroutine(PlayParticle(trail1, comboTime + .9f));
-                StartCoroutine(PlayParticle(trail2, comboTime + .9f));
-                StartCoroutine(PlayAnimation("LeftSlash", comboTime + .9f));
-            }
-        }
         
         //Secondary actions
-        //print(swordThrown);
+        /*
         if (mouse_1)
         {
             if (!swordThrown)
@@ -128,34 +108,54 @@ public class PlayerMovement : MovableCharacter
         {
             //thrownSword.transform.Rotate(thrownSword.transform.forward, Time.deltaTime*200);
         }
+        */
         
-        if (shift && curState != PlayerState.Dodge && onGround)
-        {
-            StartCoroutine(Dodge());
-            StartCoroutine(PlayAnimation(GetAnimationName(PlayerState.Dodge), .8f));
-        }
     }
 
-    protected override void Move()
+    public void Move(InputAction.CallbackContext context)
     {
-        maxVelocity = onGround ? (isCrouching ? MAX_VELOCITY / 2 : MAX_VELOCITY) : MAX_VELOCITY / 4;
-        speed = onGround ? (isCrouching ? maxSpeed / 2 : maxSpeed) : maxSpeed / 4;
-        animDeltaTime = isMoving ? 2 * Time.deltaTime : 3 * Time.deltaTime;
-        playerAnimator.SetFloat("X", Mathf.Lerp(playerAnimator.GetFloat("X"), horizontalInput, animDeltaTime));
-        playerAnimator.SetFloat("Y", Mathf.Lerp(playerAnimator.GetFloat("Y"), verticalInput, animDeltaTime));
+        float horizontalInput = context.ReadValue<Vector2>().x;
+        float verticalInput = context.ReadValue<Vector2>().y;
+
+        isMoving = horizontalInput != 0 || verticalInput != 0;
+
+        float maxVelocity = onGround ? (isCrouching ? MAX_VELOCITY / 2 : MAX_VELOCITY) : MAX_VELOCITY / 4;
+        float speed = onGround ? (isCrouching ? ACCELERATION / 2 : ACCELERATION) : ACCELERATION / 4;
+        //animDeltaTime = isMoving ? 2 * Time.deltaTime : 3 * Time.deltaTime;
+        float transitionSpeed = 3 * Time.deltaTime;
+        playerAnimator.SetFloat("X", Mathf.Lerp(playerAnimator.GetFloat("X"), horizontalInput, transitionSpeed));
+        playerAnimator.SetFloat("Y", Mathf.Lerp(playerAnimator.GetFloat("Y"), verticalInput, transitionSpeed));
+
         Vector3 axisVector = modelPlayer.forward * verticalInput + modelPlayer.right * horizontalInput;
-        axisVector.Normalize();
+        //axisVector.Normalize();
         
         if (transform.GetComponent<Rigidbody>().velocity.magnitude < maxVelocity){
             transform.GetComponent<Rigidbody>().AddForce(axisVector * speed);
         }
     }
 
-    void Crouch()
+    public void Attack(InputAction.CallbackContext context){
+        if (comboTime < 0)
+            {
+                StartCoroutine(coroutine1);
+                StartCoroutine(coroutine2);
+                StartCoroutine(PlayAnimation("RightSlash", 1.2f));
+                StartCoroutine(sword.GetComponent<Sword>().Attack());
+                comboTime = 1.2f;
+            }
+            else
+            {
+                StopCoroutine(coroutine1);
+                StopCoroutine(coroutine2);
+                StartCoroutine(PlayParticle(trail1, comboTime + .9f));
+                StartCoroutine(PlayParticle(trail2, comboTime + .9f));
+                StartCoroutine(PlayAnimation("LeftSlash", comboTime + .9f));
+            }
+    }
+
+    public void Crouch(InputAction.CallbackContext context)
     {
-        if (ctrl)
-        {
-            if (isCrouching)
+        if (isCrouching)
             {
                 transform.GetComponent<CapsuleCollider>().center = new Vector3(0, 0.65f, 0);
                 transform.GetComponent<CapsuleCollider>().height = 3.33f;
@@ -167,14 +167,11 @@ public class PlayerMovement : MovableCharacter
             }
             isCrouching = !isCrouching;
             playerAnimator.SetBool("Crouch", isCrouching);
-        }
     }
 
-    void Jump()
+    public void Jump(InputAction.CallbackContext context)
     {
-        onGround = Physics.Raycast(transform.position, -transform.up, 1.3f);
-        coyoteTime = onGround ? .5f : coyoteTime - Time.deltaTime;
-        if (space && curState != PlayerState.Jump)
+        if (curState != PlayerState.Jump)
         {
             if (onGround || curState == PlayerState.Hang)
             {
@@ -208,6 +205,14 @@ public class PlayerMovement : MovableCharacter
         curState = PlayerState.Default;
     }
 
+    public void Dodge(InputAction.CallbackContext context){
+        if (curState != PlayerState.Dodge && onGround)
+        {
+            StartCoroutine(Dodge());
+            StartCoroutine(PlayAnimation(GetAnimationName(PlayerState.Dodge), .8f));
+        }
+    }
+
     IEnumerator Dodge()
     {
         curState = PlayerState.Dodge;
@@ -226,6 +231,9 @@ public class PlayerMovement : MovableCharacter
         swordThrown = true;
         swordInHand = false;
         yield return new WaitForSeconds(.5f);
+        
+        source.GenerateImpulse(Camera.main.transform.forward);
+
         thrownSword = Instantiate(swordPrefab, cameraPlayer.position + cameraPlayer.forward * 3, sword.transform.rotation);
         sword.SetActive(false);
         thrownSword.AddComponent<Rigidbody>();
@@ -248,11 +256,6 @@ public class PlayerMovement : MovableCharacter
         particle.SetActive(true);
         yield return new WaitForSeconds(playTime);
         particle.SetActive(false);
-    }
-
-    public bool CanRotateCamera()
-    {
-        return isMoving || !onGround;
     }
 
     private String GetAnimationName(PlayerState state)

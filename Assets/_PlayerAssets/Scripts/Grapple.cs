@@ -20,20 +20,22 @@ public class Grapple : MonoBehaviour
 
     void Update()
     {
+
         
         //Debug.DrawRay(cam.position, cam.forward * maxDistance, Color.red);
         if (isGrappling && player.GetComponent<PlayerMovement>().onGround){
             UpdateJointLength();
         }
-
-        if (Input.GetKeyDown(KeyCode.E))
+        /*
+        if (e)
         {
             StartGrapple();
         }
-        if (Input.GetKeyDown(KeyCode.Space) && isGrappling)
+        if (jump && isGrappling)
         {
             StopGrapple();
         }
+        */
     }
 
     void LateUpdate()

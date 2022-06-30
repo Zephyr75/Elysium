@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 using UnityEngine;
-
 public class GameManager : MonoBehaviour
 {
 
@@ -14,7 +14,11 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)){
+        var keyboard = Keyboard.current;
+        var gamepad = Gamepad.current;
+
+        /*
+        if (keyboard.escapeKey.wasPressedThisFrame || gamepad.selectButton.wasPressedThisFrame){
             if (isPaused){
                 Resume();
             }
@@ -22,6 +26,7 @@ public class GameManager : MonoBehaviour
                 Pause();
             }
         }
+        */
     }
 
     public void Resume(){

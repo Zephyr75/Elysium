@@ -25,7 +25,7 @@ public class TypeG : MonoBehaviour
     {
         float temp = (Mathf.Sin(Time.time * 5)) * 5;
         Vector3 offset = new Vector3(temp - 90, 0, temp);
-        print(Time.fixedDeltaTime + " " + offset.x + " " + offset.y + " " + offset.z);
+        //print(Time.fixedDeltaTime + " " + offset.x + " " + offset.y + " " + offset.z);
         main.localEulerAngles = offset;
         transform.position += transform.forward * Time.deltaTime * 8;
         for (int i = 0; i < 4; i++)

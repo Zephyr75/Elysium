@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.InputSystem;
 
 public class Music : MonoBehaviour
 {
@@ -10,21 +11,9 @@ public class Music : MonoBehaviour
     [SerializeField] private GameObject confetti;
     [SerializeField] private Volume postProcessing;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public void Macarena(InputAction.CallbackContext context){
+        StartCoroutine(PlayMacarena());
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            StartCoroutine(PlayMacarena());
-        }
-    }
-
     IEnumerator PlayMacarena()
     {
         StartCoroutine(player.PlayAnimation("Macarena", 30));
