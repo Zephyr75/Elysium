@@ -25,6 +25,9 @@ public class PlayerMovement : MovableCharacter
     private PlayerState curState;
     private IEnumerator coroutine1, coroutine2;
     private Transform player;
+
+    private float inputAngle;
+
     [SerializeField] private float coyoteTime, comboTime;
     [SerializeField] private Animator playerAnimator;
     [SerializeField] private Transform modelPlayer, cameraPlayer, hand;
@@ -63,7 +66,40 @@ public class PlayerMovement : MovableCharacter
 
         //Follow focus rotation
         if (isMoving || !onGround){
-            modelPlayer.localEulerAngles = new Vector3(0, focus.transform.localEulerAngles.y, 0);
+
+            Vector3 targetRotation = new Vector3(0, focus.transform.localEulerAngles.y + inputAngle, 0);
+
+            float difference = modelPlayer.localEulerAngles.y - targetRotation.y;
+            float absDifference = Mathf.Abs(difference);
+            float step = Math.Min(absDifference, 10);
+
+            if (difference < 0)
+            {
+                if (absDifference < 180)
+                {
+                    modelPlayer.localEulerAngles += new Vector3(0, step, 0);
+                }
+                else
+                {
+                    modelPlayer.localEulerAngles -= new Vector3(0, step, 0);
+                }
+            }
+            else
+            {
+                if (absDifference < 180)
+                {
+                    modelPlayer.localEulerAngles -= new Vector3(0, step, 0);
+                }
+                else
+                {
+                    modelPlayer.localEulerAngles += new Vector3(0, step, 0);
+                }
+            }
+
+
+            print(targetRotation);
+
+            //modelPlayer.localEulerAngles = Vector3.Lerp(modelPlayer.localEulerAngles, targetRotation, Time.deltaTime * 10);
         }
 
         
@@ -129,21 +165,37 @@ public class PlayerMovement : MovableCharacter
         
     }
 
-    void Move(Vector2 movementDirection)
+    void Move(Vector2 inputDirection)
     {
-        float horizontalInput = movementDirection.x;
-        float verticalInput = movementDirection.y;
+        if (inputDirection.magnitude == 0){
+            isMoving = false;
+            return;
+        }
 
-        isMoving = horizontalInput != 0 || verticalInput != 0;
+
+        isMoving = true;
+
+        float horizontalInput = inputDirection.x;
+        float verticalInput = inputDirection.y;
+
+
+        inputAngle = Vector3.Angle(Vector3.forward, new Vector3(inputDirection.x, 0, inputDirection.y)) * Mathf.Sign(horizontalInput);
+
+        print(inputAngle);
+
+
 
         float maxVelocity = onGround ? (isCrouching ? MAX_VELOCITY / 2 : MAX_VELOCITY) : MAX_VELOCITY / 4;
         float speed = onGround ? (isCrouching ? ACCELERATION / 2 : ACCELERATION) : ACCELERATION / 4;
         //animDeltaTime = isMoving ? 2 * Time.deltaTime : 3 * Time.deltaTime;
         float transitionSpeed = 3 * Time.deltaTime;
-        playerAnimator.SetFloat("X", Mathf.Lerp(playerAnimator.GetFloat("X"), horizontalInput, transitionSpeed));
-        playerAnimator.SetFloat("Y", Mathf.Lerp(playerAnimator.GetFloat("Y"), verticalInput, transitionSpeed));
 
-        Vector3 axisVector = modelPlayer.forward * verticalInput + modelPlayer.right * horizontalInput;
+        playerAnimator.SetFloat("Move", Mathf.Lerp(playerAnimator.GetFloat("Move"), inputDirection.magnitude, transitionSpeed));
+
+        //playerAnimator.SetFloat("X", Mathf.Lerp(playerAnimator.GetFloat("X"), horizontalInput, transitionSpeed));
+        //playerAnimator.SetFloat("Y", Mathf.Lerp(playerAnimator.GetFloat("Y"), verticalInput, transitionSpeed));
+
+        Vector3 axisVector = modelPlayer.forward * inputDirection.magnitude;
         //axisVector.Normalize();
         
         if (transform.GetComponent<Rigidbody>().velocity.magnitude < maxVelocity){
