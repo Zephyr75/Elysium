@@ -16,6 +16,12 @@ public class PlayerCamera : MonoBehaviour
     
     [SerializeField] private InputActionMap input;
 
+    void Start(){
+        
+        input["Aim"].performed += ctx => StartAiming(ctx);
+        input["Aim"].canceled += ctx => StopAiming(ctx);
+    }
+
     void OnEnable()
     {
         input.Enable();
@@ -25,6 +31,13 @@ public class PlayerCamera : MonoBehaviour
     {
         input.Disable();
     }
+    
+    void FixedUpdate()
+    {
+        UpdateCamera(input["Move"].ReadValue<Vector2>());
+    }
+
+    
     public void UpdateCamera(Vector2 movementDirection)
     {
         if (GameManager.isPaused)
@@ -38,24 +51,14 @@ public class PlayerCamera : MonoBehaviour
         verticalRotation = Mathf.Clamp(verticalRotation, -80, 80);
         focus.localEulerAngles = Vector3.left * verticalRotation + Vector3.up * horizontalRotation;
     }
-    
-    void FixedUpdate()
-    {
-        
-        UpdateCamera(input["Move"].ReadValue<Vector2>());
 
-        /*if (mouse_2)
-        {
-            moveCamera.SetActive(false);
-            aimCamera.SetActive(true);
-        }
-        else
-        {
-            uiTarget.SetActive(false);
-            moveCamera.SetActive(true);
-            aimCamera.SetActive(false);
-            uiTarget.SetActive(true);
-        }*/
-        
+    void StartAiming(InputAction.CallbackContext context){
+        moveCamera.SetActive(false);
+        aimCamera.SetActive(true);
+    }
+
+    void StopAiming(InputAction.CallbackContext context){
+        moveCamera.SetActive(true);
+        aimCamera.SetActive(false);
     }
 }

@@ -2884,15 +2884,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Actions.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Bindings.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Actions.Array.data[0].m_Id
       value: 1d9aa6ac-05fe-4c2e-8213-5d4ba0a6d60a
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Actions.Array.data[1].m_Id
+      value: fd59d83b-3e90-4f9f-86e7-0074be6f9653
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Bindings.Array.data[0].m_Id
@@ -2903,12 +2907,28 @@ PrefabInstance:
       value: 81a95e88-7c42-4950-a487-ef64e091da5d
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[2].m_Id
+      value: 40c48bd9-a419-41fc-80ef-3f916b4b355b
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[3].m_Id
+      value: 45adbb43-de32-43b8-9b19-a72415daf245
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Actions.Array.data[0].m_Name
       value: Move
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Actions.Array.data[0].m_Type
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Actions.Array.data[1].m_Name
+      value: Aim
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Actions.Array.data[1].m_Type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Bindings.Array.data[0].m_Path
@@ -2919,6 +2939,14 @@ PrefabInstance:
       value: <Mouse>/delta
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[2].m_Path
+      value: <Mouse>/middleButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[3].m_Path
+      value: <Gamepad>/leftTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Bindings.Array.data[0].m_Action
       value: Move
       objectReference: {fileID: 0}
@@ -2927,8 +2955,20 @@ PrefabInstance:
       value: Move
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[2].m_Action
+      value: Aim
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[3].m_Action
+      value: Aim
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Actions.Array.data[0].m_ExpectedControlType
       value: Vector2
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246780, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Actions.Array.data[1].m_ExpectedControlType
+      value: Button
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: sword
@@ -6769,17 +6809,17 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
   shallowColor: {r: 0, g: 0.7725491, b: 0.62352943, a: 0.5019608}
-  deepColor: {r: 0.01176471, g: 0.28618258, b: 0.50980073, a: 1}
+  deepColor: {r: 0.01176471, g: 0.2861825, b: 0.50980073, a: 1}
   colorDepth: 4
-  horizonColor: {r: 0, g: 0.22735912, b: 0.8, a: 1}
+  horizonColor: {r: 0, g: 0.227359, b: 0.8, a: 1}
   horizonDistance: 20
   shoreFade: 1
-  shoreColor: {r: 0, g: 0.98039216, b: 0.30186898, a: 0}
+  shoreColor: {r: 0, g: 0.98039216, b: 0.3018689, a: 0}
   shoreStrength: 0
   shoreBlend: 1
   shoreDepth: 0.74
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0.20383447, g: 0.309712, b: 0.517647, a: 0}
+  underwaterColor: {r: 0.20383438, g: 0.3097119, b: 0.517647, a: 0}
   underwaterColorStrength: 0
   underwaterRefractionStrength: 0.099
   surfaceFoamTexture: {fileID: 2800000, guid: d3b0d77dfe711a04c8ff18ecc260aa66, type: 3}
