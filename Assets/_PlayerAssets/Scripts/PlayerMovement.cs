@@ -38,7 +38,7 @@ public class PlayerMovement : MovableCharacter
 
     [SerializeField] private InputActionMap input;
     
-    void Start()
+    void Awake()
     {
         coroutine1 = PlayParticle(trail1, 1.2f);
         coroutine2 = PlayParticle(trail2, 1.2f);
@@ -63,19 +63,7 @@ public class PlayerMovement : MovableCharacter
 
         //Update player rotation
         if (isMoving || !onGround){
-
-            Vector3 targetRotation = new Vector3(0, focus.transform.localEulerAngles.y + inputAngle, 0);
-
-            float difference = modelPlayer.localEulerAngles.y - targetRotation.y;
-            float absDifference = Math.Abs(difference);
-            float step = Math.Min(absDifference, 10);
-
-            if (absDifference < 180){
-                modelPlayer.localEulerAngles -= Math.Sign(difference) * new Vector3(0, step, 0);
-            }
-            else{
-                modelPlayer.localEulerAngles += Math.Sign(difference) * new Vector3(0, step, 0);
-            }
+            modelPlayer.localEulerAngles = Vector3.up * Mathf.LerpAngle(modelPlayer.localEulerAngles.y, focus.transform.localEulerAngles.y + inputAngle, Time.deltaTime * 10);
 
         }
 
@@ -146,18 +134,12 @@ public class PlayerMovement : MovableCharacter
     {
         playerAnimator.SetFloat("Move", Mathf.Lerp(playerAnimator.GetFloat("Move"), inputDirection.magnitude, 3 * Time.deltaTime));
 
-        if (inputDirection.magnitude == 0){
-            isMoving = false;
+        isMoving = inputDirection.magnitude > 0;
+        if (!isMoving){
             return;
         }
 
-        isMoving = true;
-
         inputAngle = Vector3.Angle(Vector3.forward, new Vector3(inputDirection.x, 0, inputDirection.y)) * Mathf.Sign(inputDirection.x);
-
-        print(inputAngle);
-
-
 
         float maxVelocity = onGround ? (isCrouching ? MAX_VELOCITY / 2 : MAX_VELOCITY) : MAX_VELOCITY / 4;
         float speed = onGround ? (isCrouching ? ACCELERATION / 2 : ACCELERATION) : ACCELERATION / 4;
@@ -165,7 +147,7 @@ public class PlayerMovement : MovableCharacter
         Vector3 axisVector = modelPlayer.forward * inputDirection.magnitude;
         
         if (transform.GetComponent<Rigidbody>().velocity.magnitude < maxVelocity){
-            transform.GetComponent<Rigidbody>().AddForce(axisVector * speed);
+            transform.GetComponent<Rigidbody>().AddForce(modelPlayer.forward * inputDirection.magnitude * speed);
         }
     }
 

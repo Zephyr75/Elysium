@@ -3104,7 +3104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Bindings.Array.data[2].m_Path
-      value: <Keyboard>/z
+      value: <Keyboard>/w
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Bindings.Array.data[3].m_Name
@@ -3120,7 +3120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Bindings.Array.data[4].m_Path
-      value: <Keyboard>/q
+      value: <Keyboard>/a
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Bindings.Array.data[5].m_Name
@@ -6809,17 +6809,17 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
   shallowColor: {r: 0, g: 0.7725491, b: 0.62352943, a: 0.5019608}
-  deepColor: {r: 0.01176471, g: 0.2861825, b: 0.50980073, a: 1}
+  deepColor: {r: 0.01176471, g: 0.28617996, b: 0.50980073, a: 1}
   colorDepth: 4
-  horizonColor: {r: 0, g: 0.227359, b: 0.8, a: 1}
+  horizonColor: {r: 0, g: 0.22735646, b: 0.8, a: 1}
   horizonDistance: 20
   shoreFade: 1
-  shoreColor: {r: 0, g: 0.98039216, b: 0.3018689, a: 0}
+  shoreColor: {r: 0, g: 0.98039216, b: 0.30186635, a: 0}
   shoreStrength: 0
   shoreBlend: 1
   shoreDepth: 0.74
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0.20383438, g: 0.3097119, b: 0.517647, a: 0}
+  underwaterColor: {r: 0.20383197, g: 0.30970934, b: 0.517647, a: 0}
   underwaterColorStrength: 0
   underwaterRefractionStrength: 0.099
   surfaceFoamTexture: {fileID: 2800000, guid: d3b0d77dfe711a04c8ff18ecc260aa66, type: 3}
