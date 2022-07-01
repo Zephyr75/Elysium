@@ -2,38 +2,59 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class VehicleTrigger : MonoBehaviour
 {
-    [SerializeField] private GameObject player, vehicle, cam;
+    [SerializeField] private GameObject camVehicle, player;
+    [SerializeField] private Rover rover;
 
-    private bool inVehicle;
+    private bool inTrigger, inVehicle;
+
+    [SerializeField] private InputActionMap input;
     
-    // Start is called before the first frame update
     void Start()
     {
-        
+        input["Enter"].performed += ctx => Enter(ctx);
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnEnable()
     {
-        
+        input.Enable();
     }
 
-    private void OnTriggerStay(Collider other)
+    void OnDisable()
     {
-        if (other.CompareTag("Player")) print("Enter vehicle:");
-        if (Input.GetKeyDown(KeyCode.E) && other.CompareTag("Player"))
+        input.Disable();
+    }
+
+    void Enter(InputAction.CallbackContext context){
+        if (inVehicle)
         {
-            print("Entered");
-            inVehicle = !inVehicle;
-            cam.SetActive(inVehicle);
-            player.SetActive(!inVehicle);
-            foreach (MonoBehaviour script in vehicle.GetComponents<MonoBehaviour>())
-            {
-                script.enabled = inVehicle;
-            }
+            player.SetActive(true);
+            camVehicle.SetActive(false);
+            rover.enabled = false;
+        }
+        else
+        {
+            player.SetActive(false);
+            camVehicle.SetActive(true);
+            rover.enabled = true;
+        }
+        inVehicle = !inVehicle;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player")){
+            inTrigger = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player")){
+            inTrigger = false;
         }
     }
 }

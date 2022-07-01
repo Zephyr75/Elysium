@@ -7,10 +7,7 @@ public class PlayerCamera : MonoBehaviour
 {
     //TODO Settings: add sensitivity
     private float sensitivity = 2f, verticalRotation, horizontalRotation;
-    [SerializeField] private int defaultDistance;
-    [SerializeField] private int zoomedDistance;
-
-    [SerializeField] private Transform focus, player;
+    [SerializeField] private Transform focus;
     [SerializeField] private GameObject uiTarget, moveCamera, aimCamera;
 
     

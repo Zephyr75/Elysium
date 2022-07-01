@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Rover : MonoBehaviour
 {
     private float currentSteerAngle;
     private float currentbreakForce;
     private bool isBreaking;
+
+    private float verticalInput, horizontalInput;
 
     [SerializeField] private float motorForce;
     [SerializeField] private float breakForce;
@@ -28,15 +31,39 @@ public class Rover : MonoBehaviour
     [SerializeField] private Transform rearLeftWheelTransform;
     [SerializeField] private Transform rearRightWheelTransform;
 
-/*
+    [SerializeField] private InputActionMap input;
+    
+    void Start()
+    {
+
+        //input["Move"].performed += ctx => Move(ctx);
+    }
+
+    void OnEnable()
+    {
+        input.Enable();
+    }
+
+    void OnDisable()
+    {
+        input.Disable();
+    }
+
     private void FixedUpdate()
     {
-        GetInput();
-        isBreaking = jump;
+        
+        Move(input["Move"].ReadValue<Vector2>());
+
+        //isBreaking = jump;
         HandleMotor();
         HandleSteering();
         UpdateWheels();
         GetComponent<Rigidbody>().centerOfMass = new Vector3 (0, -2, 0);
+    }
+
+    void Move(Vector2 inputDirection){
+        horizontalInput = inputDirection.x;
+        verticalInput = inputDirection.y;
     }
 
     private void HandleMotor()
@@ -92,5 +119,4 @@ public class Rover : MonoBehaviour
         wheelTransform.rotation = rot;
         wheelTransform.position = pos;
     }
-    */
 }
