@@ -1,15 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class Rover : MonoBehaviour
+public class Rover : Vehicle
 {
     private float currentSteerAngle;
     private float currentbreakForce;
     private bool isBreaking;
 
-    private float verticalInput, horizontalInput;
 
     [SerializeField] private float motorForce;
     [SerializeField] private float breakForce;
@@ -31,28 +29,10 @@ public class Rover : MonoBehaviour
     [SerializeField] private Transform rearLeftWheelTransform;
     [SerializeField] private Transform rearRightWheelTransform;
 
-    [SerializeField] private InputActionMap input;
     
-    void Start()
-    {
-
-        //input["Move"].performed += ctx => Move(ctx);
-    }
-
-    void OnEnable()
-    {
-        input.Enable();
-    }
-
-    void OnDisable()
-    {
-        input.Disable();
-    }
-
     private void FixedUpdate()
     {
-        
-        Move(input["Move"].ReadValue<Vector2>());
+        base.FixedUpdate();
 
         //isBreaking = jump;
         HandleMotor();
@@ -61,24 +41,19 @@ public class Rover : MonoBehaviour
         GetComponent<Rigidbody>().centerOfMass = new Vector3 (0, -2, 0);
     }
 
-    void Move(Vector2 inputDirection){
-        horizontalInput = inputDirection.x;
-        verticalInput = inputDirection.y;
-    }
 
     private void HandleMotor()
     {
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
-        print(verticalInput.ToString());
         if (Mathf.Abs(verticalInput) < .1f)
         {
             //currentbreakForce = isBreaking ? breakForce : 1000f;
-            ApplyBreaking(10000f);   
+            //ApplyBreaking(10000f);   
         }
         else
         {
-            ApplyBreaking(0); 
+            //ApplyBreaking(0); 
         }
     }
 

@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class VehicleTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject camVehicle, player;
-    [SerializeField] private Rover rover;
+    [SerializeField] private Vehicle vehicle;
 
     private bool inTrigger, inVehicle;
 
@@ -33,13 +33,13 @@ public class VehicleTrigger : MonoBehaviour
         {
             player.SetActive(true);
             camVehicle.SetActive(false);
-            rover.enabled = false;
+            vehicle.enabled = false;
         }
         else
         {
             player.SetActive(false);
             camVehicle.SetActive(true);
-            rover.enabled = true;
+            vehicle.enabled = true;
         }
         inVehicle = !inVehicle;
     }

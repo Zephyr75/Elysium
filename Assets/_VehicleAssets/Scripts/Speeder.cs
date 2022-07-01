@@ -2,19 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Speeder : MonoBehaviour
+public class Speeder : Vehicle
 {
-    
-    private bool up, down, left, right;
-    
     private RaycastHit hit;
     private readonly List<Vector3> hoverPositions = new List<Vector3>(4);
     
     private readonly Vector3 m_EulerAngleVelocity = new Vector3(0, 0, 0);
     [SerializeField] private float power, maxSpeed;
-    /*
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         hoverPositions.Add(Vector3.zero);
@@ -25,6 +20,8 @@ public class Speeder : MonoBehaviour
 
     private void FixedUpdate()
     {
+        base.FixedUpdate();
+
         float distance = 1f;
         hoverPositions[0] = transform.position + transform.forward * distance + transform.right * distance;
         hoverPositions[1] = transform.position + transform.forward * distance - transform.right * distance;
@@ -35,8 +32,6 @@ public class Speeder : MonoBehaviour
         Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity * Time.fixedDeltaTime);
         transform.GetComponent<Rigidbody>().MoveRotation(transform.GetComponent<Rigidbody>().rotation * deltaRotation);
 
-        
-        GetInput();
         //canHover = Physics.Raycast(transform.position, -transform.up, out hit, 3f);
         bool planning = true;
         for (int i = 0; i < 4; i++)
@@ -68,17 +63,9 @@ public class Speeder : MonoBehaviour
         Vector3 velocity = GetComponent<Rigidbody>().velocity;
         GetComponent<Rigidbody>().velocity = new Vector3(velocity.x * .99f, velocity.y * .9f, velocity.z * .99f);
         if (transform.GetComponent<Rigidbody>().velocity.magnitude < 2000){
-            if (verticalInput == 1)
-            {
-                GetComponent<Rigidbody>().AddForce(transform.forward * 20);
-            }
-            if (verticalInput == -1)
-            {
-                GetComponent<Rigidbody>().AddForce(-transform.forward * 10);
-            }
+            GetComponent<Rigidbody>().AddForce(verticalInput * transform.forward * 20);
         }
         GetComponent<Rigidbody>().AddTorque(transform.up * horizontalInput * 50);
         
     }
-    */
 }
