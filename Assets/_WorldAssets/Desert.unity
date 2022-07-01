@@ -2038,7 +2038,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   vehicle: {fileID: 743716886}
-  camera: {fileID: 1905907159}
+  cam: {fileID: 0}
 --- !u!1 &601354716
 GameObject:
   m_ObjectHideFlags: 0
@@ -2722,11 +2722,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3d7737b84462c1a448f948cfeec4caf5, type: 3}
   m_PrefabInstance: {fileID: 697963983}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &699936523 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6837563116044823248, guid: c38bb30fc27c0764bb337c4e59f4b4ee, type: 3}
-  m_PrefabInstance: {fileID: 182307550}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &725668951
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3016,11 +3011,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Actions.Array.size
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Bindings.Array.size
-      value: 8
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Actions.Array.data[0].m_Id
@@ -3029,6 +3024,18 @@ PrefabInstance:
     - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Actions.Array.data[1].m_Id
       value: b7f8a94f-aea6-4db7-b397-b44fa425812e
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Actions.Array.data[2].m_Id
+      value: de21bd9f-d519-47a8-aadb-034436d70bbb
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Actions.Array.data[3].m_Id
+      value: e8bf00cd-91ec-40c4-99c4-7b4f6213d344
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Actions.Array.data[4].m_Id
+      value: bf70fea7-e7e7-42a2-9920-36015dadfc9b
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Bindings.Array.data[0].m_Id
@@ -3063,6 +3070,14 @@ PrefabInstance:
       value: 043a2958-8806-4e60-ba7b-6bfb15e11917
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[8].m_Id
+      value: 595e845e-0dbc-44cc-906b-8ee180a0cac0
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[9].m_Id
+      value: 8346499c-5294-4eed-a0de-e54aa3195ff5
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: gameplayActions.m_Actions.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -3081,6 +3096,46 @@ PrefabInstance:
     - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Actions.Array.data[1].m_Type
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Actions.Array.data[2].m_Name
+      value: Dodge
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Actions.Array.data[2].m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Actions.Array.data[3].m_Name
+      value: Crouch
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Actions.Array.data[3].m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Actions.Array.data[4].m_Name
+      value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Actions.Array.data[4].m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[10].m_Id
+      value: 608d87e3-04b8-47c3-907d-002bd7ae99b4
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[11].m_Id
+      value: 2ac904ea-6380-46be-bee4-0354ccb4b483
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[12].m_Id
+      value: ee142d18-4cbb-4588-8c53-a2ba9a20f8e6
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[13].m_Id
+      value: 1a24a6cf-374d-489c-a544-fa6d7dda190f
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: gameplayActions.m_Bindings.Array.size
@@ -3136,7 +3191,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Bindings.Array.data[7].m_Path
-      value: <XInputController>/buttonSouth
+      value: <Gamepad>/buttonSouth
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[8].m_Path
+      value: <Keyboard>/v
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[9].m_Path
+      value: <Gamepad>/buttonWest
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[10].m_Path
+      value: <Keyboard>/c
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[11].m_Path
+      value: <Gamepad>/buttonEast
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[12].m_Path
+      value: <Gamepad>/rightShoulder
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[13].m_Path
+      value: <Mouse>/leftButton
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Bindings.Array.data[1].m_Flags
@@ -3191,6 +3270,30 @@ PrefabInstance:
       value: Jump
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[8].m_Action
+      value: Dodge
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[9].m_Action
+      value: Dodge
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[10].m_Action
+      value: Crouch
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[11].m_Action
+      value: Crouch
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[12].m_Action
+      value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Bindings.Array.data[13].m_Action
+      value: Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: gameplayActions.m_Actions.Array.data[0].m_Id
       value: 1c563c18-aa7a-4e8d-b5c9-401cddc5932f
       objectReference: {fileID: 0}
@@ -3216,6 +3319,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: input.m_Actions.Array.data[1].m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Actions.Array.data[2].m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Actions.Array.data[3].m_ExpectedControlType
+      value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: input.m_Actions.Array.data[4].m_ExpectedControlType
       value: Button
       objectReference: {fileID: 0}
     - target: {fileID: 611530918361246781, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
@@ -3257,6 +3372,18 @@ PrefabInstance:
     - target: {fileID: 6247776065432956065, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247776065685791074, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247776066145963285, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247776066145963287, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9082910333317137043, guid: b4bc69011bdf5f5469cbd4c2d1a0b0c2, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -6568,7 +6695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   vehicle: {fileID: 1603034003}
-  camera: {fileID: 699936523}
+  cam: {fileID: 0}
 --- !u!65 &2107248636
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6809,17 +6936,17 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
   shallowColor: {r: 0, g: 0.7725491, b: 0.62352943, a: 0.5019608}
-  deepColor: {r: 0.01176471, g: 0.28617996, b: 0.50980073, a: 1}
+  deepColor: {r: 0.01176471, g: 0.28617656, b: 0.50980073, a: 1}
   colorDepth: 4
-  horizonColor: {r: 0, g: 0.22735646, b: 0.8, a: 1}
+  horizonColor: {r: 0, g: 0.22735307, b: 0.8, a: 1}
   horizonDistance: 20
   shoreFade: 1
-  shoreColor: {r: 0, g: 0.98039216, b: 0.30186635, a: 0}
+  shoreColor: {r: 0, g: 0.98039216, b: 0.30186296, a: 0}
   shoreStrength: 0
   shoreBlend: 1
   shoreDepth: 0.74
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0.20383197, g: 0.30970934, b: 0.517647, a: 0}
+  underwaterColor: {r: 0.20382875, g: 0.30970594, b: 0.517647, a: 0}
   underwaterColorStrength: 0
   underwaterRefractionStrength: 0.099
   surfaceFoamTexture: {fileID: 2800000, guid: d3b0d77dfe711a04c8ff18ecc260aa66, type: 3}

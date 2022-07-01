@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class VehicleTrigger : MonoBehaviour
 {
-    [SerializeField] private GameObject player, vehicle, camera;
+    [SerializeField] private GameObject player, vehicle, cam;
 
     private bool inVehicle;
     
@@ -28,7 +28,7 @@ public class VehicleTrigger : MonoBehaviour
         {
             print("Entered");
             inVehicle = !inVehicle;
-            camera.SetActive(inVehicle);
+            cam.SetActive(inVehicle);
             player.SetActive(!inVehicle);
             foreach (MonoBehaviour script in vehicle.GetComponents<MonoBehaviour>())
             {

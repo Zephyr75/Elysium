@@ -38,13 +38,16 @@ public class PlayerMovement : MovableCharacter
 
     [SerializeField] private InputActionMap input;
     
-    void Awake()
+    void Start()
     {
         coroutine1 = PlayParticle(trail1, 1.2f);
         coroutine2 = PlayParticle(trail2, 1.2f);
         player = transform;
 
         input["Jump"].performed += ctx => Jump(ctx);
+        input["Dodge"].performed += ctx => Dodge(ctx);
+        input["Crouch"].performed += ctx => Crouch(ctx);
+        input["Attack"].performed += ctx => Attack(ctx);
     }
 
     void OnEnable()
@@ -63,7 +66,7 @@ public class PlayerMovement : MovableCharacter
 
         //Update player rotation
         if (isMoving || !onGround){
-            modelPlayer.localEulerAngles = Vector3.up * Mathf.LerpAngle(modelPlayer.localEulerAngles.y, focus.transform.localEulerAngles.y + inputAngle, Time.deltaTime * 10);
+            modelPlayer.localEulerAngles = Vector3.up * Mathf.LerpAngle(modelPlayer.localEulerAngles.y, focus.transform.localEulerAngles.y + inputAngle, Time.deltaTime * 5);
 
         }
 
@@ -156,21 +159,21 @@ public class PlayerMovement : MovableCharacter
             {
                 StartCoroutine(coroutine1);
                 StartCoroutine(coroutine2);
-                StartCoroutine(PlayAnimation("RightSlash", 1.2f));
+                StartCoroutine(PlayAnimation("RightSlash", 1f));
                 StartCoroutine(sword.GetComponent<Sword>().Attack());
-                comboTime = 1.2f;
+                comboTime = 1f;
             }
             else
             {
                 StopCoroutine(coroutine1);
                 StopCoroutine(coroutine2);
-                StartCoroutine(PlayParticle(trail1, comboTime + .9f));
-                StartCoroutine(PlayParticle(trail2, comboTime + .9f));
-                StartCoroutine(PlayAnimation("LeftSlash", comboTime + .9f));
+                StartCoroutine(PlayParticle(trail1, comboTime + 1.8f));
+                StartCoroutine(PlayParticle(trail2, comboTime + 1.8f));
+                StartCoroutine(PlayAnimation("LeftSlash", comboTime + 1.8f));
             }
     }
 
-    public void Crouch(InputAction.CallbackContext context)
+    void Crouch(InputAction.CallbackContext context)
     {
         if (isCrouching)
             {
@@ -194,7 +197,7 @@ public class PlayerMovement : MovableCharacter
             if (onGround || curState == PlayerState.Hang)
             {
                 StartCoroutine(PlayAnimation("Jump", .2f));
-                float strength = curState == PlayerState.Hang ? 450 : 400;
+                float strength = curState == PlayerState.Hang ? 450 : 450;
                 StartCoroutine(Jump(strength));
             }
             else if (coyoteTime > 0 )
@@ -208,8 +211,7 @@ public class PlayerMovement : MovableCharacter
     {
         curState = PlayerState.Jump;
         coyoteTime = -1;
-        yield return new WaitForSeconds(.35f); 
-        //TODO restore
+        yield return new WaitForSeconds(.35f);
         transform.GetComponent<Rigidbody>().AddForce(transform.up * strength);
         yield return new WaitForSeconds(1);
         curState = PlayerState.Default;
@@ -224,7 +226,7 @@ public class PlayerMovement : MovableCharacter
         curState = PlayerState.Default;
     }
 
-    public void Dodge(InputAction.CallbackContext context){
+    void Dodge(InputAction.CallbackContext context){
         if (curState != PlayerState.Dodge && onGround)
         {
             StartCoroutine(Dodge());

@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerCamera : MonoBehaviour
 {
     //TODO Settings: add sensitivity
-    private float sensitivity = 1f, verticalRotation, horizontalRotation;
+    private float sensitivity = 2f, verticalRotation, horizontalRotation;
     [SerializeField] private int defaultDistance;
     [SerializeField] private int zoomedDistance;
 
