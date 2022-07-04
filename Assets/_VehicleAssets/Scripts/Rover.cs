@@ -30,7 +30,7 @@ public class Rover : Vehicle
     [SerializeField] private Transform rearRightWheelTransform;
 
     
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
         base.FixedUpdate();
 

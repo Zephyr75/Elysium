@@ -18,7 +18,7 @@ public class Speeder : Vehicle
         hoverPositions.Add(Vector3.zero);
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
         base.FixedUpdate();
 

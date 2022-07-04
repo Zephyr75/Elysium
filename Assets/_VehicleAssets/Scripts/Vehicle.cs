@@ -25,7 +25,7 @@ public class Vehicle : MonoBehaviour
         input.Disable();
     }
 
-    protected void FixedUpdate(){
+    protected virtual void FixedUpdate(){
         Move(input["Move"].ReadValue<Vector2>());
     }
 

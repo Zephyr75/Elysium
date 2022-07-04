@@ -29,19 +29,21 @@ public class VehicleTrigger : MonoBehaviour
     }
 
     void Enter(InputAction.CallbackContext context){
-        if (inVehicle)
-        {
-            player.SetActive(true);
-            camVehicle.SetActive(false);
-            vehicle.enabled = false;
+        if (inTrigger){
+            if (inVehicle)
+            {
+                player.SetActive(true);
+                camVehicle.SetActive(false);
+                vehicle.enabled = false;
+            }
+            else
+            {
+                player.SetActive(false);
+                camVehicle.SetActive(true);
+                vehicle.enabled = true;
+            }
+            inVehicle = !inVehicle;
         }
-        else
-        {
-            player.SetActive(false);
-            camVehicle.SetActive(true);
-            vehicle.enabled = true;
-        }
-        inVehicle = !inVehicle;
     }
 
     private void OnTriggerEnter(Collider other)
